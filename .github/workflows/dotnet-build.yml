@@ -1,0 +1,28 @@
+name: .NET build workflow
+
+on:
+  push: # 1. Uma ação acionada por evento de push
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'  # 2. Outra ação agendada para ser executada a cada hora
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 3. Utilize pelo menos uma action pré-existente do GitHub e pelo menos um script personalizado
+    - name: Checkout repository # action pré-existente
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.0.x' 
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build app
+      run: dotnet build **/*.csproj --no-restore # script personalizado
