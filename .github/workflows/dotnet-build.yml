@@ -26,9 +26,6 @@ jobs:
 
     - name: Build app
       run: dotnet build **/*.csproj --no-restore # script personalizado
-    
-    - name: Run app
-      run: dotnet run --project **/*.csproj
       
     - name: Print status
       run: |
