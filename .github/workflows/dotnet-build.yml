@@ -1,4 +1,4 @@
-name: .NET build workflow
+name: .NET build
 
 on:
   push: # 1. Uma ação acionada por evento de push
@@ -13,20 +13,14 @@ jobs:
 
     steps:
     # 3. Utilize pelo menos uma action pré-existente do GitHub e pelo menos um script personalizado
-    # - name: Checkout repository # action pré-existente
-    #   uses: actions/checkout@v2
-
-    # - name: Setup .NET
-    #   uses: actions/setup-dotnet@v1
-    #   with:
-    #     dotnet-version: |
-    #       3.1.X
-    #       5.0.X
-    #       6.0.X
-    - uses: actions/checkout@main
-    - uses: actions/setup-dotnet@v1
+    - name: Checkout repository # action pré-existente
+      uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '3.1.x'
+        dotnet-version: '8.0.x'
+        
     - name: Restore dependencies
       run: dotnet restore **/*.csproj
 
@@ -35,3 +29,7 @@ jobs:
     
     - name: Run app
       run: dotnet run --project **/*.csproj
+      
+    - name: Print status
+      run: |
+        echo "Running app"
