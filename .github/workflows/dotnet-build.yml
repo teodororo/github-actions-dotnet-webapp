@@ -13,17 +13,20 @@ jobs:
 
     steps:
     # 3. Utilize pelo menos uma action pré-existente do GitHub e pelo menos um script personalizado
-    - name: Checkout repository # action pré-existente
-      uses: actions/checkout@v2
+    # - name: Checkout repository # action pré-existente
+    #   uses: actions/checkout@v2
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+    # - name: Setup .NET
+    #   uses: actions/setup-dotnet@v1
+    #   with:
+    #     dotnet-version: |
+    #       3.1.X
+    #       5.0.X
+    #       6.0.X
+    - uses: actions/checkout@main
+    - uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: |
-          3.1.X
-          5.0.X
-          6.0.X
-
+        dotnet-version: '3.1.x'
     - name: Restore dependencies
       run: dotnet restore **/*.csproj
 
