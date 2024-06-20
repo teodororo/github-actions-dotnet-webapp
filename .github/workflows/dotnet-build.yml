@@ -19,7 +19,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '1.2' 
+        dotnet-version: |
+          3.1.X
+          5.0.X
+          6.0.X
 
     - name: Restore dependencies
       run: dotnet restore **/*.csproj
